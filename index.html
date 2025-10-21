@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sagar R - Software Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #64748b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #3b82f6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--dark);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 1rem auto;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .skill-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-card ul {
+            list-style: none;
+        }
+
+        .skill-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .experience-header h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+        }
+
+        .experience-header .company {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .experience-header .date {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .experience-item ul {
+            margin-left: 1.5rem;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+        }
+
+        /* Projects Section */
+        #projects {
+            background: #f1f5f9;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .project-card .year {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .project-card ul {
+            margin-left: 1.5rem;
+            color: var(--secondary);
+        }
+
+        .project-card li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education Section */
+        .education-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .education-card h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .degree {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .date {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .coursework {
+            margin-top: 1.5rem;
+        }
+
+        .coursework h4 {
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .coursework p {
+            color: var(--secondary);
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--dark);
+            color: white;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            border: 2px solid var(--accent);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .contact-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #020617;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                gap: 0.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-links {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">SR</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Sagar R</h1>
+            <h2>Software Developer</h2>
+            <p>Full-Stack Developer specializing in AI & Automation, building scalable web applications with modern frameworks and cutting-edge technologies.</p>
+            <div class="hero-links">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Languages</h3>
+                    <ul>
+                        <li>Java</li>
+                        <li>Python</li>
+                        <li>JavaScript</li>
+                        <li>SQL</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Frameworks & Libraries</h3>
+                    <ul>
+                        <li>Flask, Django, FastAPI</li>
+                        <li>Spring Boot</li>
+                        <li>React</li>
+                        <li>Angular</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>AI & Automation</h3>
+                    <ul>
+                        <li>CrewAI, LangChain</li>
+                        <li>Agentic RAG</li>
+                        <li>WatsonX Orchestrate</li>
+                        <li>Ollama, UiPath (RPA)</li>
+                        <li>FastAPI-MCP</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Databases & APIs</h3>
+                    <ul>
+                        <li>PostgreSQL, MySQL</li>
+                        <li>RESTful API Design</li>
+                        <li>Secure Authentication</li>
+                        <li>Session Management</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <h3>Cybersecurity & Tools</h3>
+                    <ul>
+                        <li>Burp Suite</li>
+                        <li>Penetration Testing</li>
+                        <li>Secure Coding Practices</li>
+                        <li>Git/GitHub, Docker</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Software Developer</h3>
+                        <p class="company">Shriram Properties Limited, Bengaluru</p>
+                    </div>
+                    <span class="date">Nov 2024 - Present</span>
+                </div>
+                <ul>
+                    <li>Gained hands-on experience with CrewAI, LangChain, Agentic RAG, MCP, WatsonX Orchestrate, UiPath, Ollama, and Salesforce.</li>
+                    <li>Led the design and deployment of a Generative AI automation project in Python, improving operational efficiency.</li>
+                    <li>Directed an automation initiative with UiPath and Python, reducing processing time by 40% and cutting costs by ~30%.</li>
+                    <li>Partnered with cross-functional teams to plan and architect a secure, scalable web application using Flask (backend) and React (frontend).</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Full-Stack Developer Intern</h3>
+                        <p class="company">Zenixus E-Learning Private Limited, Bengaluru</p>
+                    </div>
+                    <span class="date">May 2024 - July 2024</span>
+                </div>
+                <ul>
+                    <li>Built a full-stack web application with Angular (frontend) and Spring Boot (backend) integrated with an AWS database.</li>
+                    <li>Developed RESTful APIs and implemented an interactive, responsive user interface to enhance user experience and data flow.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Agentic RAG</h3>
+                        <span class="year">2025</span>
+                        <ul>
+                            <li>Designed an Agentic Retrieval-Augmented Generation system using CrewAI, LangChain, and ChromaDB.</li>
+                            <li>Implemented document-vectorization pipelines to index large volumes of unstructured PDFs and text files.</li>
+                            <li>Built natural-language query handling for context-aware answers in real time.</li>
+                            <li>Delivered a modular architecture allowing seamless integration with other LLMs or knowledge bases.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>Smart Desktop Virtual Assistant</h3>
+                        <span class="year">2024</span>
+                        <ul>
+                            <li>Developed a Python desktop assistant with speech recognition and natural-language understanding.</li>
+                            <li>Automated key tasks: emergency email & WhatsApp alerts, Google search queries, application launching/closing.</li>
+                            <li>Designed a lightweight SQLite database for secure contact and email storage.</li>
+                            <li>Implemented multi-threading for responsive voice interactions.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>School Management System</h3>
+                        <span class="year">2024</span>
+                        <ul>
+                            <li>Engineered a full-stack web platform with Angular (frontend) and Spring Boot (backend).</li>
+                            <li>Managed student records, class schedules, attendance, and grading.</li>
+                            <li>Created RESTful APIs to handle CRUD operations and role-based authentication.</li>
+                            <li>Optimized database queries to reduce report-generation time by 30%.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-content">
+                        <h3>E-Commerce Platform</h3>
+                        <span class="year">2024</span>
+                        <ul>
+                            <li>Built a login-free shopping application using Django, Java, and Firebase (NoSQL).</li>
+                            <li>Implemented order tracking by name and mobile number with temporary data storage.</li>
+                            <li>Automatic deletion after order completion for privacy compliance.</li>
+                            <li>Integrated payment simulation and email notifications for seamless user experience.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card">
+                <h3>Sivananda Sarma Memorial RV College</h3>
+                <p class="degree">Bachelor of Computer Application (BCA)</p>
+                <p class="date">Aug 2021 – Aug 2024 | CGPA: 7.6/10</p>
+                <div class="coursework">
+                    <h4>Relevant Coursework:</h4>
+                    <p>Python, Java, C, PHP, Object Oriented Programming, Databases, Discrete Maths, Data Structures and Algorithms, Operating Systems, Computer Networks, Advanced Data Structures and Algorithms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-info">
+                <p style="font-size: 1.2rem; margin-bottom: 1rem;">I'm always open to discussing new projects, opportunities, or collaborations.</p>
+                <div class="contact-links">
+                    <a href="mailto:rudreshsagar123@gmail.com">Email Me</a>
+                    <a href="https://github.com/rudreshsagar123" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/rudreshsagar123" target="_blank">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Sagar R. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(15, 23, 42, 1)';
+            } else {
+                nav.style.background = 'rgba(15, 23, 42, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
